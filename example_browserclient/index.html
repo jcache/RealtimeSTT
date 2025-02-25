@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Audio Streamer</title>
+    <title>Realtime Speech-to-Text Demo</title>
     <meta charset="UTF-8">
     <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <style>
@@ -14,13 +14,26 @@
             color: white;
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         .text-display {
             white-space: pre-wrap; /* Preserves spaces and line breaks */
-            font-size: 16px;
+            font-size: 20px;
+            min-height: 150px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
         }
         .yellow {
             color: yellow;
@@ -28,10 +41,31 @@
         .cyan {
             color: cyan;
         }
+        .error {
+            color: #ff6b6b;
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        .status {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div id="textDisplay" style="max-width: 800px; margin: auto;">
+    <div class="container">
+        <h1>Realtime Speech-to-Text</h1>
+        <div id="textDisplay" class="text-display"></div>
+        <div id="errorMessage" class="error"></div>
+        <div id="status" class="status">
+            Microphone: <span id="micStatus">⏳ Checking...</span> |
+            Server: <span id="serverStatus">⏳ Checking...</span>
+        </div>
+    </div>
     <script src="client.js"></script>
 </body>
 </html>
