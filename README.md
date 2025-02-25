@@ -415,6 +415,21 @@ When using OpenAI-, Azure- or Elevenlabs-related demo scripts the API Keys shoul
 
 The example_app subdirectory contains a polished user interface application for the OpenAI API based on PyQt5.
 
+The example_browserclient subdirectory contains a web browser-based implementation:
+- **Description**: A web application demonstrating real-time speech-to-text functionality.
+- **Components**: 
+  - `server.py`: WebSocket server that handles audio streaming and transcription
+  - `client.js`: Browser-side JavaScript for audio capture using AudioWorklet API
+  - `index.html`: Simple UI for displaying transcription results
+- **Usage**: 
+  1. Uncomment the following line in `docker-compose.yml`:
+     ```yaml
+     - ./example_browserclient:/app/example_browserclient
+     ```
+  2. Start the Docker containers: `docker-compose up`
+  3. Navigate to `http://localhost:8081` in your web browser
+  4. Allow microphone access and start speaking
+
 ## Configuration
 
 ### Initialization Parameters for `AudioToTextRecorder`
